@@ -1,36 +1,31 @@
-const nfetch = require('node-fetch');
-const Channel = require('./src/Channel.js');
+import fetch from 'node-fetch';
+import {Channel} from './src/types/Channel';
+import {HolodexApiOptions} from './src/types/HolodexApiOptions';
+
 /**
  * A class representing the holodex api
- * @param {Object} options a object containing the api key
- * @example { apiKey: 'your api key' }
  */
-class holodex {
+export default class holodex {
   public key: string;
   public baseUrl: string;
   public headers: {};
   public fetch;
 
-  constructor(options) {
-    if (!options || !options.apiKey) {
-      throw new Error('You must provide an api key');
-    }
+  constructor(options: HolodexApiOptions) {
     this.key = options.apiKey;
     this.baseUrl = 'https://holodex.net/api/v2';
     this.headers = {
       'Content-Type': 'application/json',
       'X-APIKEY': this.key,
     };
-    this.fetch = nfetch;
+    this.fetch = fetch;
   }
 
   /**
    * Get a channel by id
-   * @param {String} channelId
-   * @returns {Channel} The channel object
    */
-  getChannel = async channelId => {
-    const data = await this.fetch(`${this.baseUrl}/channels/${channelId}`, {
+  public async getChannel(id: string) {
+    const data = await this.fetch(`${this.baseUrl}/channels/${id}`, {
       method: 'GET',
       headers: this.headers,
     }).then(data => {
@@ -46,7 +41,5 @@ class holodex {
     });
 
     return new Channel(data);
-  };
+  }
 }
-
-module.exports.holodex = holodex;
