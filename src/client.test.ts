@@ -1,4 +1,4 @@
-import holodex from './index';
+import {holodex} from './client';
 
 const client = new holodex({
   apiKey: 'b7edbc10-018f-4dfc-8048-6ee628cb2cf7',

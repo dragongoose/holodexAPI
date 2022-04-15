@@ -2,6 +2,9 @@ import {ChannelType} from './parts/ChannelType';
 import {RawChannel} from './raw/Channel';
 import {ChannelStats} from './parts/ChannelStats';
 
+/**
+ * Class which represents a channel.
+ */
 export class Channel {
   public rawData;
 

@@ -34,6 +34,9 @@ EXAMPLE RESPONSE
 
 import {ChannelType} from '../parts/ChannelType';
 
+/**
+ * The raw response from the API
+ */
 export interface RawChannel {
   id: string;
   name: string;

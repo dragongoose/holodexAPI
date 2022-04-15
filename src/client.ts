@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
-import {Channel} from './src/types/Channel';
-import {HolodexApiOptions} from './src/types/HolodexApiOptions';
+import {Channel} from './types/Channel';
+import {HolodexApiOptions} from './types/HolodexApiOptions';
 
 /**
  * A class representing the holodex api
  */
-export default class holodex {
+export class holodex {
   public key: string;
   public baseUrl: string;
   public headers: {};
