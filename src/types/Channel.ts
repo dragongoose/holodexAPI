@@ -1,16 +1,16 @@
-export interface Channel {
+export interface ChannelType {
   id: string;
   name: string;
-  englishName: string | null;
+  englishName?: string;
   description: string;
   type: 'vtuber' | 'subber';
-  org: string | null;
-  suborg: string | null;
-  photo: string | null;
-  thumbnail: string | null;
-  banner: string | null;
-  twitter: string | null;
-  lang: string | null;
+  org?: string;
+  suborg?: string;
+  photo?: string;
+  thumbnail?: string;
+  banner?: string;
+  twitter?: string;
+  lang?: string;
   inactive: boolean;
   publishedAt: Date;
   createdAt: Date;
