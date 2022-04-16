@@ -7,4 +7,6 @@ const client = new holodex({
 test('makes sure getChannel returns channel', async () => {
   const channel = await client.getChannel('UCoSrY_IQQVpmIRZ9Xf-y93g');
   expect(channel.englishName).toBe('Gawr Gura');
+
+  console.log(JSON.stringify(channel));
 });

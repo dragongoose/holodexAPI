@@ -9,5 +9,5 @@
     "src/**/*.ts",
     "src/**/**/*.ts",
     "test/**/*.ts"
-, "index.ts"  ]
+, "src/index.ts"  ]
 }
