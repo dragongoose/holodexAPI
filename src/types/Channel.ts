@@ -102,13 +102,14 @@ export class Channel {
   /**
    * The stats of the channel
    * @readonly
+   * @see ChannelStats
    * Example:
    * ```json
    * {
-   *   videoCount: number;
-   *   viewCount: number;
-   *   subscriberCount: number;
-   *   clipCount: number;
+   *   videoCount: number,
+   *   viewCount: number,
+   *   subscriberCount: number,
+   *   clipCount: number,
    * }
    * ```
    */
