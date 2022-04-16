@@ -102,6 +102,15 @@ export class Channel {
   /**
    * The stats of the channel
    * @readonly
+   * Example:
+   * ```json
+   * {
+   *   videoCount: number;
+   *   viewCount: number;
+   *   subscriberCount: number;
+   *   clipCount: number;
+   * }
+   * ```
    */
   public get stats(): ChannelStats {
     const stats: ChannelStats = {
