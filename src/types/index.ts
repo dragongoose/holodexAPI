@@ -4,3 +4,4 @@ export * from './parts';
 export * from './raw';
 export * from './Video';
 export * from './VideoSearchOptions';
+export * from './Mention';
