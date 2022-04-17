@@ -10,7 +10,7 @@
     "typescript": "^4.6.3"
   },
   "name": "holodex-api",
-  "version": "v0.1.9-beta", 
+  "version": "v0.2.2-beta",
   "main": "./build/src/index.js",
   "typings": "./build/src/index.d.ts",
   "declaration": true,
@@ -32,7 +32,6 @@
   "description": "API wrapper for the Holodex API",
   "dependencies": {
     "dotenv": "^16.0.0",
-    "node-fetch": "^2.0.0",
-    "typedoc-plugin-missing-exports": "^0.22.6"
+    "node-fetch": "^2.0.0"
   }
 }
