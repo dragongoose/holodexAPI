@@ -8,7 +8,7 @@ You can view the docs [here](https://dragongoose.github.io/holodexAPI/index.html
 
 ## Installation
 
-Use [NPM](https://npmjs.com) to install foobar.
+Use [NPM](https://npmjs.com) to install holodex-api.
 
 ```bash
 npm i holodex-api
@@ -19,7 +19,7 @@ npm i holodex-api
 Also view [examples](https://github.com/dragongoose/holodexAPI/tree/master/src/examples)
 
 ```typescript
-import {holodex} from 'holodexAPI';
+import {holodex} from 'holodex-api';
 
 const client = new holodex({
     apiKey: 'APIKEY',
