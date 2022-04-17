@@ -4,7 +4,6 @@
     "rootDir": ".",
     "outDir": "build",
     "target": "es6",
-    "module": "es6",
   },
   "include": [
     "src/**/*.ts",
