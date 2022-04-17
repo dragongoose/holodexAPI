@@ -1,7 +1,14 @@
 import {holodex} from './client';
+import 'dotenv/config';
+
+if (!process.env.HOLODEX_API_KEY) {
+  throw Error('Please set HOLODEX_API_KEY in your .env file');
+}
+
+const apiKey = process.env.HOLODEX_API_KEY;
 
 const client = new holodex({
-  apiKey: 'b7edbc10-018f-4dfc-8048-6ee628cb2cf7',
+  apiKey,
 });
 
 test('makes sure getChannel returns channel', async () => {
