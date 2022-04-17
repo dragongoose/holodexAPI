@@ -9,5 +9,8 @@
     "src/**/*.ts",
     "src/**/**/*.ts",
     "test/**/*.ts"
-, "src/index.ts"  ]
+, "src/index.ts"  ],
+"engines": {
+  "node": ">=16.0.0"
+}
 }
