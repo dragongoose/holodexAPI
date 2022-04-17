@@ -7,16 +7,13 @@ const client = new holodex({
 test('makes sure getChannel returns channel', async () => {
   const channel = await client.getChannel('UCoSrY_IQQVpmIRZ9Xf-y93g');
   expect(channel.englishName).toBe('Gawr Gura');
-
-  console.log(JSON.stringify(channel));
 });
 
 test('makes sure getVideo returns video', async () => {
   const video = await client.getVideo('A1gfjXeDvDk', {
     comments: true,
+    lang: 'EN',
   });
-
-  console.log(video.title);
 
   expect(video.title).toBe('FORTNITE');
 });
