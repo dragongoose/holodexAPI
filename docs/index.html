@@ -4,18 +4,23 @@
 </a>
 <p>holodexAPI is a wrapper for the <a href="https://holodex.net/">holodex</a> API, written in TypeScript.</p>
 
+<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+  <h2>Documentation</h2>
+</a>
+<p>You can view the docs <a href="https://dragongoose.github.io/holodexAPI/index.html">here</a></p>
+
 <a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
   <h2>Installation</h2>
 </a>
-<p>Use <a href="https://npmjs.com">NPM</a> to install foobar.</p>
-<pre><code class="language-bash"><span class="hl-0">npm i holodexAPI</span>
+<p>Use <a href="https://npmjs.com">NPM</a> to install holodex-api.</p>
+<pre><code class="language-bash"><span class="hl-0">npm i holodex-api</span>
 </code></pre>
 
 <a href="#example" id="example" style="color: inherit; text-decoration: none;">
   <h2>Example</h2>
 </a>
 <p>Also view <a href="https://github.com/dragongoose/holodexAPI/tree/master/src/examples">examples</a></p>
-<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> {</span><span class="hl-2">holodex</span><span class="hl-0">} </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;holodexAPI&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">client</span><span class="hl-0"> = </span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-6">holodex</span><span class="hl-0">({</span><br/><span class="hl-0">    </span><span class="hl-2">apiKey:</span><span class="hl-0"> </span><span class="hl-3">&#39;APIKEY&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">})</span><br/><br/><span class="hl-2">client</span><span class="hl-0">.</span><span class="hl-6">getChannel</span><span class="hl-0">(</span><span class="hl-3">&#39;UCoSrY_IQQVpmIRZ9Xf-y93g&#39;</span><span class="hl-0">).</span><span class="hl-6">then</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0"> </span><span class="hl-4">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-2">console</span><span class="hl-0">.</span><span class="hl-6">log</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0">.</span><span class="hl-2">name</span><span class="hl-0">); </span><span class="hl-7">// &#39;Gawr Gura Ch. hololive-EN&#39;</span><br/><span class="hl-0">  </span><span class="hl-2">console</span><span class="hl-0">.</span><span class="hl-6">log</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0">.</span><span class="hl-2">englishName</span><span class="hl-0">); </span><span class="hl-7">// &#39;Gawr Gura&#39;</span><br/><span class="hl-0">  </span><span class="hl-2">console</span><span class="hl-0">.</span><span class="hl-6">log</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0">.</span><span class="hl-2">type</span><span class="hl-0">); </span><span class="hl-7">// &#39;vtuber&#39;</span><br/><span class="hl-0">});</span>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> {</span><span class="hl-2">holodex</span><span class="hl-0">} </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;holodex-api&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">client</span><span class="hl-0"> = </span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-6">holodex</span><span class="hl-0">({</span><br/><span class="hl-0">    </span><span class="hl-2">apiKey:</span><span class="hl-0"> </span><span class="hl-3">&#39;APIKEY&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">})</span><br/><br/><span class="hl-2">client</span><span class="hl-0">.</span><span class="hl-6">getChannel</span><span class="hl-0">(</span><span class="hl-3">&#39;UCoSrY_IQQVpmIRZ9Xf-y93g&#39;</span><span class="hl-0">).</span><span class="hl-6">then</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0"> </span><span class="hl-4">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-2">console</span><span class="hl-0">.</span><span class="hl-6">log</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0">.</span><span class="hl-2">name</span><span class="hl-0">); </span><span class="hl-7">// &#39;Gawr Gura Ch. hololive-EN&#39;</span><br/><span class="hl-0">  </span><span class="hl-2">console</span><span class="hl-0">.</span><span class="hl-6">log</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0">.</span><span class="hl-2">englishName</span><span class="hl-0">); </span><span class="hl-7">// &#39;Gawr Gura&#39;</span><br/><span class="hl-0">  </span><span class="hl-2">console</span><span class="hl-0">.</span><span class="hl-6">log</span><span class="hl-0">(</span><span class="hl-2">channel</span><span class="hl-0">.</span><span class="hl-2">type</span><span class="hl-0">); </span><span class="hl-7">// &#39;vtuber&#39;</span><br/><span class="hl-0">});</span>
 </code></pre>
 
 <a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
