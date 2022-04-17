@@ -10,3 +10,13 @@ test('makes sure getChannel returns channel', async () => {
 
   console.log(JSON.stringify(channel));
 });
+
+test('makes sure getVideo returns video', async () => {
+  const video = await client.getVideo('A1gfjXeDvDk', {
+    comments: true,
+  });
+
+  console.log(video.title);
+
+  expect(video.title).toBe('Gawr Gura - The First Episode');
+});

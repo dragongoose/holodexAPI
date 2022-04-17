@@ -1,6 +1,8 @@
 import fetch from 'node-fetch';
 import {Channel} from './types/Channel';
+import {Video} from './types/Video';
 import {HolodexApiOptions} from './types/HolodexApiOptions';
+import {VideoSearchOptions} from './types/VideoSearchOptions';
 
 /**
  * A class representing the holodex api
@@ -41,5 +43,30 @@ export class holodex {
     });
 
     return new Channel(data);
+  }
+
+  public async getVideo(id: string, options: VideoSearchOptions) {
+    const comments = options.comments === true ? 1 : 0;
+    const optionsToJson = JSON.parse(JSON.stringify(options));
+    optionsToJson.comments = comments;
+
+    const query = new URLSearchParams(optionsToJson).toString();
+    console.log(query);
+    const data = await this.fetch(`${this.baseUrl}/videos/${id}${query}`, {
+      method: 'GET',
+      headers: this.headers,
+    }).then(data => {
+      if (data.status === 403) {
+        throw new Error('Invalid API key (Unauthorized)');
+      }
+
+      if (data.status !== 200) {
+        throw new Error(data.statusText);
+      }
+
+      return data.json();
+    });
+
+    return new Video(data);
   }
 }
