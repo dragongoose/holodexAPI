@@ -21,7 +21,7 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "prepare": "typedoc && npm run lint && npm test && npm run clean",
+    "prepare": "typedoc && npm run clean",
     "pretest": "npm run compile",
     "posttest": "npm run lint"
   },
