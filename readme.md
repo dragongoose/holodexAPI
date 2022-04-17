@@ -2,12 +2,16 @@
 
 holodexAPI is a wrapper for the [holodex](https://holodex.net/) API, written in TypeScript.
 
+## Documentation
+
+You can view the docs [here](https://dragongoose.github.io/holodexAPI/index.html)
+
 ## Installation
 
 Use [NPM](https://npmjs.com) to install foobar.
 
 ```bash
-npm i holodexAPI
+npm i holodex-api
 ```
 
 ## Example
