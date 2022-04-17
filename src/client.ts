@@ -51,8 +51,7 @@ export class holodex {
     optionsToJson.comments = comments;
 
     const query = new URLSearchParams(optionsToJson).toString();
-    console.log(query);
-    const data = await this.fetch(`${this.baseUrl}/videos/${id}${query}`, {
+    const data = await this.fetch(`${this.baseUrl}/videos/${id}?${query}`, {
       method: 'GET',
       headers: this.headers,
     }).then(data => {

@@ -18,5 +18,5 @@ test('makes sure getVideo returns video', async () => {
 
   console.log(video.title);
 
-  expect(video.title).toBe('Gawr Gura - The First Episode');
+  expect(video.title).toBe('FORTNITE');
 });
