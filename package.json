@@ -10,8 +10,10 @@
     "typescript": "^4.6.3"
   },
   "name": "holodex-api",
-  "version": "0.1.2",
-  "main": "./src/index.ts",
+  "version": "v0.1.3-beta",
+  "main": "./build/index.js",
+  "typings": "./build/index.d.ts",
+  "declaration": true,
   "directories": {
     "test": "./src/test"
   },
