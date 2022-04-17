@@ -1,6 +1,7 @@
 import {VideoStatus} from './parts/VideoStatus';
 import {VideoType} from './parts/VideoType';
 import {RawVideo} from './raw/Video';
+import {Mention} from './Mention';
 
 export class Video {
   #rawData: RawVideo;
@@ -164,5 +165,13 @@ export class Video {
    */
   public get channelId() {
     return this.#rawData.channel_id;
+  }
+
+  public get mentions() {
+    const vidMentions = this.#rawData.mentions.map(
+      memory => new Mention(memory)
+    );
+    console.log(vidMentions);
+    return vidMentions;
   }
 }
