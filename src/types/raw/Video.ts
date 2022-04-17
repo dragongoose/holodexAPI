@@ -318,6 +318,7 @@ EXAMPLE RESPONSE
 import {VideoType} from '../parts/VideoType';
 import {VideoStatus} from '../parts/VideoStatus';
 import {RawMention} from './Mention';
+import {RawClip} from './Clip';
 
 // TODO - Add comments, channel, and clips
 export interface RawVideo {
@@ -336,5 +337,6 @@ export interface RawVideo {
   description: string;
   songcount: number;
   channel_id: string;
+  clips: RawClip[];
   mentions: RawMention[];
 }
