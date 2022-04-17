@@ -37,5 +37,18 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## Testing
+
+If you are going to working with a local copy, you are going to be using the test script a lot.
+To setup the test script, set the HOLODEX_API_KEY environment variable to your api key.
+In this example, we will use DOTENV, which the project already uses.
+
+In the root dir, make a .env file.
+```bash
+HOLODEX_API_KEY="API_KEY"
+```
+
+Thats it!
+
 ## License
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
