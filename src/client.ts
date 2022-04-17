@@ -50,6 +50,7 @@ export class holodex {
     const optionsToJson = JSON.parse(JSON.stringify(options));
     optionsToJson.comments = comments;
 
+    // eslint-disable-next-line node/no-unsupported-features/node-builtins
     const query = new URLSearchParams(optionsToJson).toString();
     const data = await this.fetch(`${this.baseUrl}/videos/${id}?${query}`, {
       method: 'GET',
