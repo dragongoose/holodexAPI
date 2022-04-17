@@ -9,7 +9,7 @@
     "typedoc": "^0.22.15",
     "typescript": "^4.6.3"
   },
-  "name": "holodexAPI",
+  "name": "holodex-api",
   "version": "0.1.2",
   "main": "./src/index.ts",
   "directories": {
