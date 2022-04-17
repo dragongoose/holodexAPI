@@ -5,6 +5,7 @@ import {ChannelType} from '../types/parts/ChannelType';
  * A mention of a channel, which is shorter than a channel. This is used for the mentions in the holodex. Usually found in the video endpoint.
  */
 export class Mention {
+  #rawData: RawMention;
   constructor(data: RawMention) {
     this.#rawData = data;
   }

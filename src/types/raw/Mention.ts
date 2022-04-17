@@ -12,7 +12,7 @@ export interface RawMention {
   /**
    * The org the channel is with
    */
-  org: stream;
+  org: string;
   /**
    * Language of channel
    */
@@ -32,5 +32,11 @@ export interface RawMention {
    * The photo of the channel
    */
   photo?: string;
+
+  /**
+   * The name of the channel in english
+   * @readonly
+   * @type {string}
+   */
   english_name: string;
 }
