@@ -23,7 +23,8 @@
     "fix": "gts fix",
     "prepare": "typedoc && npm run clean",
     "pretest": "npm run compile",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "doc": "npx typedoc"
   },
   "keywords": [],
   "author": "",
