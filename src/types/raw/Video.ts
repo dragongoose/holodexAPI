@@ -319,6 +319,7 @@ import {VideoType} from '../parts/VideoType';
 import {VideoStatus} from '../parts/VideoStatus';
 import {RawMention} from './Mention';
 
+// TODO - Add comments, channel, and clips
 export interface RawVideo {
   id: string;
   title: string;
