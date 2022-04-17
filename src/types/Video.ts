@@ -30,7 +30,7 @@ export class Video {
   /**
    * The type of the video
    * @readonly
-   * @type {VideoType}
+   * @see {VideoType}
    */
   public get type(): VideoType {
     return this.#rawData.type;
@@ -47,7 +47,7 @@ export class Video {
   }
 
   /**
-   * The published at of the video
+   * When the video was published
    * @readonly
    * @type {string}
    * @example
@@ -58,7 +58,7 @@ export class Video {
   }
 
   /**
-   * The available at of the video
+   * When the video was marked as visible
    * @readonly
    * @type {string}
    * @example
@@ -69,7 +69,7 @@ export class Video {
   }
 
   /**
-   * The duration of the video
+   * The length of the video in seconds
    * @readonly
    * @type {number}
    * @example
@@ -92,7 +92,7 @@ export class Video {
   }
 
   /**
-   * The start scheduled of the video
+   * The scheduled start of the video
    * @readonly
    * @type {string}
    * @example
@@ -103,7 +103,7 @@ export class Video {
   }
 
   /**
-   * The start actual of the video
+   * The time the video actually started
    * @readonly
    * @type {string}
    * @example
@@ -114,7 +114,7 @@ export class Video {
   }
 
   /**
-   * The end actual of the video
+   * The actual end of the video
    * @readonly
    * @type {string}
    * @example
@@ -125,7 +125,7 @@ export class Video {
   }
 
   /**
-   * The live viewers of the video
+   * The amount of live viewers on the video
    * @readonly
    * @type {number}
    * @example
@@ -158,7 +158,7 @@ export class Video {
   }
 
   /**
-   * The channel id of the video
+   * The channel id of the uploader
    * @readonly
    * @type {string}
    */
