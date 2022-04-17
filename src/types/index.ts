@@ -6,3 +6,4 @@ export * from './Video';
 export * from './VideoSearchOptions';
 export * from './Mention';
 export * from './Clip';
+export * from './Comment';

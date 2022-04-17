@@ -48,10 +48,12 @@ export class holodex {
   public async getVideo(id: string, options: VideoSearchOptions) {
     const comments = options.comments === true ? 1 : 0;
     const optionsToJson = JSON.parse(JSON.stringify(options));
-    optionsToJson.comments = comments;
+    delete optionsToJson.comments;
+    optionsToJson.c = comments;
 
     // eslint-disable-next-line node/no-unsupported-features/node-builtins
     const query = new URLSearchParams(optionsToJson).toString();
+    console.log(query);
     const data = await this.fetch(`${this.baseUrl}/videos/${id}?${query}`, {
       method: 'GET',
       headers: this.headers,

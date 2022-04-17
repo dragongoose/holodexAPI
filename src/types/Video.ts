@@ -3,6 +3,7 @@ import {VideoType} from './parts/VideoType';
 import {RawVideo} from './raw/Video';
 import {Mention} from './Mention';
 import {Clip} from './Clip';
+import {Comment} from './Comment';
 
 export class Video {
   #rawData: RawVideo;
@@ -168,17 +169,84 @@ export class Video {
     return this.#rawData.channel_id;
   }
 
+  /**
+   * Clips of the video
+   * @readonly
+   * @type {Clip[]}
+   * @example
+   * [
+   *  {
+   *   "id": "6J6y9GkArEs",
+   *   "lang": "en",
+   *   "type": "clip",
+   *   "title": "Gura can't stop laughing at the chaos Fauna and Mumei are making",
+   *   "status": "past",
+   *   "channel": {
+   *     "id": "UCWrHUQo0T5lot1etA1gBMpA",
+   *     "name": "SlackFunday Ch.",
+   *     "photo": "https://yt3.ggpht.com/xFZwzyxKE6aZChNIFVgSPlPeCE37TIVxivFfkrcucLWcqKcAFnIKObDez-xKujvEdnypuopcIQ=s800-c-k-c0x00ffffff-no-rj"
+   *   },
+   *   "duration": 174,
+   *   "available_at": "2022-04-16T17:59:35+00:00"
+   *  },
+   * ]
+   * @see Clip
+   */
   public get clips() {
     const vidClips = this.#rawData.clips.map(memory => new Clip(memory));
 
     return vidClips;
   }
 
+  /**
+   * Other channels that the video mentions
+   * @readonly
+   * @type {Mention[]}
+   * @example
+   * [
+   *  {
+   *   "id": "UCO_aKKYxn4tvrqPjcTzZ6EQ",
+   *   "org": "Hololive",
+   *   "lang": null,
+   *   "name": "Ceres Fauna Ch. hololive-EN",
+   *   "type": "vtuber",
+   *    "photo": "https://yt3.ggpht.com/cBtserkb211p6If2OewgWd8oriIKRkfwTcP4_Vdq2YETG5TK9Q02v4cYmnLU03KBAJ0gcDha7oQ=s800-c-k-c0x00ffffff-no-rj",
+   *    "english_name": "Ceres Fauna"
+   *  },
+   * ]
+   * @see {Mention}
+   */
   public get mentions() {
     const vidMentions = this.#rawData.mentions.map(
       memory => new Mention(memory)
     );
 
     return vidMentions;
+  }
+
+  /**
+   * The comments on the video
+   * @readonly
+   * @type {Comment[]}
+   * @example
+   * [
+   *  {
+   *   "comment_key": "UgxJG8mCVkV9tMLyu3t4AaABAg",
+   *   "message": "2:53:22😂😂😂, love this part!"
+   *  },
+   * ]
+   * @see {Comment}
+   */
+  public get comments() {
+    console.log(this.#rawData);
+    if (!this.#rawData.comments || this.#rawData.comments.length === 0) {
+      return [];
+    }
+
+    const vidComments = this.#rawData.comments.map(
+      memory => new Comment(memory)
+    );
+
+    return vidComments;
   }
 }

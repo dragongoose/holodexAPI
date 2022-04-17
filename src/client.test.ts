@@ -37,3 +37,12 @@ test('makes sure getVideo has clips', async () => {
   );
   expect(video.clips.length).toBeGreaterThan(0);
 });
+
+test('makes sure getVideo has comments', async () => {
+  const video = await client.getVideo('A1gfjXeDvDk', {
+    comments: true,
+    lang: 'EN',
+  });
+
+  expect(video.comments.length).toBeGreaterThan(0);
+});
