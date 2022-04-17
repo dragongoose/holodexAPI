@@ -1,7 +1,7 @@
-src
+docs
 .github
 jest.config.js
-tsconfig.json
-docs
-.eslintignore
 .eslintrc.js
+.gitignore
+typedoc.json
+tsconfig.json
