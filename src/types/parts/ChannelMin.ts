@@ -13,8 +13,11 @@
   },
 */
 
-import {ChannelType} from '../parts/ChannelType';
+import {ChannelType} from '../parts';
 
+/**
+ * A shorter channel, found in the video endpoint.
+ */
 export interface ChannelMin {
   id: string;
   name: string;

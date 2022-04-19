@@ -315,12 +315,8 @@ EXAMPLE RESPONSE
 }
 */
 
-import {VideoType} from '../parts/VideoType';
-import {VideoStatus} from '../parts/VideoStatus';
-import {RawMention} from './Mention';
-import {RawClip} from './Clip';
-import {RawComment} from './Comment';
-import {ChannelMin} from '../parts/ChannelMin';
+import {VideoType, VideoStatus, ChannelMin} from '../parts';
+import {RawMention, RawComment, RawClip} from './';
 
 // TODO - add recommendations
 // https://holodex.stoplight.io/docs/holodex/b3A6MTE2MjAyNDA-get-a-single-video-s-metadata

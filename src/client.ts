@@ -1,8 +1,5 @@
 import fetch from 'node-fetch';
-import {Channel} from './types/Channel';
-import {Video} from './types/Video';
-import {HolodexApiOptions} from './types/HolodexApiOptions';
-import {VideoSearchOptions} from './types/VideoSearchOptions';
+import {VideoSearchOptions, Channel, HolodexApiOptions, Video} from './types';
 
 /**
  * A class representing the holodex api

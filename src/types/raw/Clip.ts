@@ -15,8 +15,7 @@
     }
     */
 
-import {VideoStatus} from '../parts/VideoStatus';
-import {VideoType} from '../parts/VideoType';
+import {VideoType, VideoStatus} from '../parts';
 
 export interface RawClip {
   id: string;

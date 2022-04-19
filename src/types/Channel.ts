@@ -1,6 +1,5 @@
-import {ChannelType} from './parts/ChannelType';
-import {RawChannel} from './raw/Channel';
-import {ChannelStats} from './parts/ChannelStats';
+import {ChannelType, ChannelStats} from './parts';
+import {RawChannel} from './raw';
 
 /**
  * Class which represents a channel.

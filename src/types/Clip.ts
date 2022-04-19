@@ -1,6 +1,5 @@
 import {RawClip} from './raw';
-import {VideoType} from './parts/VideoType';
-import {VideoStatus} from './parts/VideoStatus';
+import {VideoType, VideoStatus} from './parts';
 
 /**
  * Class which represents a clip.

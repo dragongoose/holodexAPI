@@ -1,4 +1,4 @@
-import {ChannelType} from '../parts/ChannelType';
+import {ChannelType} from '../parts';
 
 /**
  * A class that represents a shorter channel

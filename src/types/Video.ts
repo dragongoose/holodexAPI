@@ -1,10 +1,7 @@
-import {VideoStatus} from './parts/VideoStatus';
-import {VideoType} from './parts/VideoType';
-import {RawVideo} from './raw/Video';
+import {VideoStatus, VideoType, ChannelMin} from './parts';
+import {RawVideo} from './raw';
 import {Mention} from './Mention';
-import {Clip} from './Clip';
-import {Comment} from './Comment';
-import {ChannelMin} from './parts/ChannelMin';
+import {Clip, Comment} from './';
 
 export class Video {
   #rawData: RawVideo;

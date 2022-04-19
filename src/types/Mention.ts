@@ -1,5 +1,5 @@
-import {RawMention} from '../types/raw/Mention';
-import {ChannelType} from '../types/parts/ChannelType';
+import {RawMention} from '../types/raw';
+import {ChannelType} from '../types/parts';
 
 /**
  * A mention of a channel, which is shorter than a channel. This is used for the mentions in the holodex. Usually found in the video endpoint.

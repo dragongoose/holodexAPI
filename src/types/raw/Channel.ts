@@ -32,7 +32,7 @@ EXAMPLE RESPONSE
 }
  */
 
-import {ChannelType} from '../parts/ChannelType';
+import {ChannelType} from '../parts';
 
 /**
  * The raw response from the API
