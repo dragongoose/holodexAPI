@@ -4,6 +4,7 @@ import {RawVideo} from './raw/Video';
 import {Mention} from './Mention';
 import {Clip} from './Clip';
 import {Comment} from './Comment';
+import {ChannelMin} from './parts/ChannelMin';
 
 export class Video {
   #rawData: RawVideo;
@@ -248,5 +249,9 @@ export class Video {
     );
 
     return vidComments;
+  }
+
+  public get channel(): ChannelMin {
+    return this.#rawData.channel;
   }
 }

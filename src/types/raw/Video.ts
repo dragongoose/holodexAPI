@@ -320,6 +320,7 @@ import {VideoStatus} from '../parts/VideoStatus';
 import {RawMention} from './Mention';
 import {RawClip} from './Clip';
 import {RawComment} from './Comment';
+import {ChannelMin} from '../parts/ChannelMin';
 
 // TODO - add channel
 export interface RawVideo {
@@ -341,4 +342,5 @@ export interface RawVideo {
   clips: RawClip[];
   mentions: RawMention[];
   comments?: RawComment[];
+  channel: ChannelMin;
 }
