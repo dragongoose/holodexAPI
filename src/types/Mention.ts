@@ -1,12 +1,12 @@
-import {RawMention} from '../types/raw';
+import {ChannelMin} from '../types/raw';
 import {ChannelType} from '../types/parts';
 
 /**
  * A mention of a channel, which is shorter than a channel. This is used for the mentions in the holodex. Usually found in the video endpoint.
  */
 export class Mention {
-  #rawData: RawMention;
-  constructor(data: RawMention) {
+  #rawData: ChannelMin;
+  constructor(data: ChannelMin) {
     this.#rawData = data;
   }
 

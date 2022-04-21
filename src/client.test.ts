@@ -58,3 +58,14 @@ test('makes sure getVideo has channel', async () => {
 
   expect(video.channel.english_name).toBe('Gawr Gura');
 });
+
+test('makes sure getVideo has recommendations', async () => {
+  const video = await client.getVideo('A1gfjXeDvDk', {
+    comments: true,
+    lang: 'EN',
+  });
+
+  console.log(video.recommendations);
+
+  expect(video.recommendations.length).toBeGreaterThan(0);
+});

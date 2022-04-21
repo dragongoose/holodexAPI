@@ -1,7 +1,8 @@
-import {VideoStatus, VideoType, ChannelMin} from './parts';
+import {VideoStatus, VideoType} from './parts';
+import {ChannelMin} from './raw';
 import {RawVideo} from './raw';
 import {Mention} from './Mention';
-import {Clip, Comment} from './';
+import {Clip, Comment, Recommendation} from './';
 
 export class Video {
   #rawData: RawVideo;
@@ -246,6 +247,14 @@ export class Video {
     );
 
     return vidComments;
+  }
+
+  public get recommendations(): Recommendation[] {
+    const vidRecomendations = this.#rawData.recommendations.map(memory => {
+      return new Recommendation(memory);
+    });
+
+    return vidRecomendations;
   }
 
   public get channel(): ChannelMin {

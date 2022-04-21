@@ -315,8 +315,9 @@ EXAMPLE RESPONSE
 }
 */
 
-import {VideoType, VideoStatus, ChannelMin} from '../parts';
-import {RawMention, RawComment, RawClip} from './';
+import {VideoType, VideoStatus} from '../parts';
+import {ChannelMin, RawComment, RawClip} from './';
+import {RawRecommendation} from './Recommendation';
 
 // TODO - add recommendations
 // https://holodex.stoplight.io/docs/holodex/b3A6MTE2MjAyNDA-get-a-single-video-s-metadata
@@ -337,7 +338,8 @@ export interface RawVideo {
   songcount: number;
   channel_id: string;
   clips: RawClip[];
-  mentions: RawMention[];
+  mentions: ChannelMin[];
   comments?: RawComment[];
+  recommendations: RawRecommendation[];
   channel: ChannelMin;
 }
