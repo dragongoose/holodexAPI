@@ -319,8 +319,6 @@ import {VideoType, VideoStatus} from '../parts';
 import {ChannelMin, RawComment, RawClip} from './';
 import {RawRecommendation} from './Recommendation';
 
-// TODO - add recommendations
-// https://holodex.stoplight.io/docs/holodex/b3A6MTE2MjAyNDA-get-a-single-video-s-metadata
 export interface RawVideo {
   id: string;
   title: string;
