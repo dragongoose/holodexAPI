@@ -147,16 +147,16 @@
         */
 
 import {VideoStatus, VideoType} from '../parts';
-import {ChannelMin} from './';
+import {ChannelMin} from '.';
 
-export interface RawRecommendation {
+export interface RawVideoMin {
   id: string;
   title: string;
   type: VideoType;
   topic_id: string;
   published_at: string;
   available_at: string;
-  duration: number;
+  duration?: number;
   status: VideoStatus;
   live_tl_count: {
     [lang: string]: number;

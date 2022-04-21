@@ -1,10 +1,10 @@
 import {VideoStatus, VideoType} from './parts';
-import {ChannelMin, RawRecommendation} from './raw';
+import {ChannelMin, RawVideoMin} from './raw';
 
 export class Recommendation {
-  #rawData: RawRecommendation;
+  #rawData: RawVideoMin;
 
-  constructor(rawData: RawRecommendation) {
+  constructor(rawData: RawVideoMin) {
     this.#rawData = rawData;
   }
 
