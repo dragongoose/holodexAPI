@@ -50,7 +50,7 @@ export class holodex {
 
     // eslint-disable-next-line node/no-unsupported-features/node-builtins
     const query = new URLSearchParams(optionsToJson).toString();
-    console.log(query);
+
     const data = await this.fetch(`${this.baseUrl}/videos/${id}?${query}`, {
       method: 'GET',
       headers: this.headers,
