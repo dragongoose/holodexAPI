@@ -12,7 +12,7 @@ export class Channel {
   }
 
   /**
-   * The id of the channel
+   * The ID of the channel
    */
   public get id() {
     return this.#rawData.id;
