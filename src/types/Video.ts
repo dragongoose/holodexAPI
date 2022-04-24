@@ -2,7 +2,7 @@ import {VideoStatus, VideoType} from './parts';
 import {ChannelMin} from './raw';
 import {RawVideo} from './raw';
 import {Mention} from './Mention';
-import {Clip, Comment, Recommendation} from './';
+import {Clip, Comment, VideoMin} from './';
 
 export class Video {
   #rawData: RawVideo;
@@ -237,7 +237,6 @@ export class Video {
    * @see {Comment}
    */
   public get comments() {
-    console.log(this.#rawData);
     if (!this.#rawData.comments || this.#rawData.comments.length === 0) {
       return [];
     }
@@ -249,9 +248,9 @@ export class Video {
     return vidComments;
   }
 
-  public get recommendations(): Recommendation[] {
+  public get recommendations(): VideoMin[] {
     const vidRecomendations = this.#rawData.recommendations.map(memory => {
-      return new Recommendation(memory);
+      return new VideoMin(memory);
     });
 
     return vidRecomendations;

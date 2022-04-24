@@ -65,7 +65,26 @@ test('makes sure getVideo has recommendations', async () => {
     lang: 'EN',
   });
 
-  console.log(video.recommendations);
-
   expect(video.recommendations.length).toBeGreaterThan(0);
+});
+
+test('make sure getVideo recommendation have a title', async () => {
+  const video = await client.getVideo('A1gfjXeDvDk', {
+    comments: true,
+    lang: 'EN',
+  });
+
+  const recommendation = video.recommendations[0];
+  // Check all of the recommendation's values
+
+  expect(recommendation.id).toBeDefined();
+  expect(recommendation.title).toBeDefined();
+  expect(recommendation.type).toBeDefined();
+  expect(recommendation.topicId).toBeDefined();
+  expect(recommendation.publishedAt).toBeDefined();
+  expect(recommendation.availableAt).toBeDefined();
+  expect(recommendation.duration).toBeDefined();
+  expect(recommendation.status).toBeDefined();
+  expect(recommendation).toHaveProperty('liveTlCount');
+  expect(recommendation.channelId).toBeDefined();
 });

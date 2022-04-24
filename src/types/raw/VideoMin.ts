@@ -158,7 +158,7 @@ export interface RawVideoMin {
   available_at: string;
   duration?: number;
   status: VideoStatus;
-  live_tl_count: {
+  live_tl_count?: {
     [lang: string]: number;
   };
   channel: ChannelMin;

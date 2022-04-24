@@ -7,4 +7,4 @@ export * from './VideoSearchOptions';
 export * from './Mention';
 export * from './Clip';
 export * from './Comment';
-export * from './Recommendation';
+export * from './VideoMin';

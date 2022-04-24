@@ -1,7 +1,7 @@
 import {VideoStatus, VideoType} from './parts';
 import {ChannelMin, RawVideoMin} from './raw';
 
-export class Recommendation {
+export class VideoMin {
   #rawData: RawVideoMin;
 
   constructor(rawData: RawVideoMin) {
