@@ -8,3 +8,4 @@ export * from './Mention';
 export * from './Clip';
 export * from './Comment';
 export * from './VideoMin';
+export * from './MultiVideoSearchOptions';
