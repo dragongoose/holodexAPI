@@ -88,3 +88,25 @@ test('make sure getVideo recommendation have a title', async () => {
   expect(recommendation).toHaveProperty('liveTlCount');
   expect(recommendation.channelId).toBeDefined();
 });
+
+test('make sure getVideos has videos', async () => {
+  const videos = await client.getVideos({
+    include: {
+      mentions: true,
+    },
+    limit: 50,
+  });
+
+  // Check all of the video's values
+  expect(videos[0].id).toBeDefined();
+  expect(videos[0].title).toBeDefined();
+  expect(videos[0].type).toBeDefined();
+  expect(videos[0].topicId).toBeDefined();
+  expect(videos[0].publishedAt).toBeDefined();
+  expect(videos[0].availableAt).toBeDefined();
+  expect(videos[0].duration).toBeDefined();
+  expect(videos[0].status).toBeDefined();
+  expect(videos[0]).toHaveProperty('liveTlCount');
+  expect(videos[0].channelId).toBeDefined();
+  expect(videos.length).toBeGreaterThan(0);
+});
