@@ -99,6 +99,22 @@ export class holodex {
     return new Video(data);
   }
 
+  /**
+   * Get multiple video from filters
+   * @param options Options for the video
+   * @see {MultiVideoSearchOptions}
+   * @returns {Promise<VideoMin[]>}
+   * @example
+   * ```javascript
+   * holodex.getVideos({
+   *   type: 'clip',
+   *   topicId: 'minecraft',
+   *   limit: 10,
+   * }).then(videos => {
+   * console.log(videos[0].title);
+   * });
+   * ```
+   */
   public async getVideos(options: MultiVideoSearchOptions) {
     const optionsToJson = JSON.parse(JSON.stringify(options));
 
