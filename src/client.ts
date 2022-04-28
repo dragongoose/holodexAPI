@@ -99,7 +99,7 @@ export class holodex {
     return new Video(data);
   }
 
-  public async getVideos(id: string, options: MultiVideoSearchOptions) {
+  public async getVideos(options: MultiVideoSearchOptions) {
     const optionsToJson = JSON.parse(JSON.stringify(options));
 
     // It gets a bit weird here, but we need to do this to get the query string
@@ -111,10 +111,8 @@ export class holodex {
     //! Honestly, I'm not sure if this soution will work,
     //! I'm going to try it and see if it works later
     const query = new URLSearchParams(optionsToJson).toString();
-    console.log(query);
 
-    /*
-    const data = await this.fetch(`${this.baseUrl}/channels/${id}/videos`, {
+    const data = await this.fetch(`${this.baseUrl}/videos?${query}`, {
       method: 'GET',
       headers: this.headers,
     }).then(data => {
@@ -131,6 +129,5 @@ export class holodex {
 
     const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
     return mappedData;
-    */
   }
 }

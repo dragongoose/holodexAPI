@@ -54,6 +54,10 @@ export class VideoMin {
    * "minecraft"
    */
   public get topicId() {
+    if (!this.#rawData.topic_id) {
+      return 'none';
+    }
+
     return this.#rawData.topic_id;
   }
 
