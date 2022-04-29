@@ -6,8 +6,18 @@ import {
   Video,
   VideoMin,
   RawVideoMin,
+  RawChannel,
+  RawVideo,
 } from './types';
 import {MultiVideoSearchOptions} from './types/MultiVideoSearchOptions';
+
+import NodeCache from 'node-cache';
+const cache = new NodeCache({
+  //2 minutes
+  stdTTL: 120,
+  checkperiod: 120,
+  deleteOnExpire: true,
+});
 
 /**
  * A class representing the holodex api
@@ -39,20 +49,39 @@ export class holodex {
    * });
    */
   public async getChannel(id: string) {
-    const data = await this.fetch(`${this.baseUrl}/channels/${id}`, {
-      method: 'GET',
-      headers: this.headers,
-    }).then(data => {
-      if (data.status === 403) {
-        throw new Error('Invalid API key (Unauthorized)');
-      }
+    // Make sure all arguments are provided
+    if (!id) {
+      throw new Error('Channel id is required');
+    }
 
-      if (data.status !== 200) {
-        throw new Error(data.statusText);
-      }
+    let data: RawChannel;
 
-      return data.json();
-    });
+    // Check if the channel is cached
+    if (cache.has('channel_' + id)) {
+      data = (await cache.get('channel_' + id)) as RawChannel;
+    }
+
+    // If it's not cached, fetch it
+    else {
+      data = await this.fetch(`${this.baseUrl}/channels/${id}`, {
+        method: 'GET',
+        headers: this.headers,
+      }).then(data => {
+        if (data.status === 403) {
+          throw new Error('Invalid API key (Unauthorized)');
+        }
+
+        if (data.status !== 200) {
+          throw new Error(data.statusText);
+        }
+        const dataJson = data.json();
+
+        // Cache the data
+        cache.set('channel_' + id, dataJson);
+
+        return dataJson;
+      });
+    }
 
     return new Channel(data);
   }
@@ -73,6 +102,16 @@ export class holodex {
    * ```
    */
   public async getVideo(id: string, options: VideoSearchOptions) {
+    // Make sure all arguments are provided
+    if (!id) {
+      throw new Error('id is required');
+    }
+
+    // Make sure all arguments are provided
+    if (!options) {
+      throw new Error('options is required');
+    }
+
     const comments = options.comments === true ? 1 : 0;
     const optionsToJson = JSON.parse(JSON.stringify(options));
     delete optionsToJson.comments;
@@ -81,20 +120,35 @@ export class holodex {
     // eslint-disable-next-line node/no-unsupported-features/node-builtins
     const query = new URLSearchParams(optionsToJson).toString();
 
-    const data = await this.fetch(`${this.baseUrl}/videos/${id}?${query}`, {
-      method: 'GET',
-      headers: this.headers,
-    }).then(data => {
-      if (data.status === 403) {
-        throw new Error('Invalid API key (Unauthorized)');
-      }
+    let data: RawVideo;
 
-      if (data.status !== 200) {
-        throw new Error(data.statusText);
-      }
+    // Check if the channel is cached
+    if (cache.has('video_' + id)) {
+      data = (await cache.get('video_' + id)) as RawVideo;
+    }
 
-      return data.json();
-    });
+    // If it's not cached, fetch it
+    else {
+      data = await this.fetch(`${this.baseUrl}/videos/${id}?${query}`, {
+        method: 'GET',
+        headers: this.headers,
+      }).then(data => {
+        if (data.status === 403) {
+          throw new Error('Invalid API key (Unauthorized)');
+        }
+
+        if (data.status !== 200) {
+          throw new Error(data.statusText);
+        }
+
+        const dataJson = data.json();
+
+        // Cache the data
+        cache.set('video_' + id, dataJson);
+
+        return dataJson;
+      });
+    }
 
     return new Video(data);
   }
@@ -116,6 +170,11 @@ export class holodex {
    * ```
    */
   public async getVideos(options: MultiVideoSearchOptions) {
+    // Make sure all arguments are provided
+    if (!options) {
+      throw new Error('options is required');
+    }
+
     const optionsToJson = JSON.parse(JSON.stringify(options));
 
     // It gets a bit weird here, but we need to do this to get the query string
@@ -126,22 +185,39 @@ export class holodex {
 
     //! Honestly, I'm not sure if this soution will work,
     //! I'm going to try it and see if it works later
+    //EDIT: I tried it and it seems to work
+    // eslint-disable-next-line node/no-unsupported-features/node-builtins
     const query = new URLSearchParams(optionsToJson).toString();
 
-    const data = await this.fetch(`${this.baseUrl}/videos?${query}`, {
-      method: 'GET',
-      headers: this.headers,
-    }).then(data => {
-      if (data.status === 403) {
-        throw new Error('Invalid API key (Unauthorized)');
-      }
+    let data: RawVideoMin[];
 
-      if (data.status !== 200) {
-        throw new Error(data.statusText);
-      }
+    // Check if the channel is cached
+    if (cache.has('videos_' + query)) {
+      data = (await cache.get('videos_' + query)) as RawVideoMin[];
+    }
 
-      return data.json();
-    });
+    // If it's not cached, fetch it
+    else {
+      data = await this.fetch(`${this.baseUrl}/videos?${query}`, {
+        method: 'GET',
+        headers: this.headers,
+      }).then(data => {
+        if (data.status === 403) {
+          throw new Error('Invalid API key (Unauthorized)');
+        }
+
+        if (data.status !== 200) {
+          throw new Error(data.statusText);
+        }
+
+        const dataJson = data.json();
+
+        // Cache the data
+        cache.set('videos_' + query, dataJson);
+
+        return dataJson;
+      });
+    }
 
     const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
     return mappedData;
