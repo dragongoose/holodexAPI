@@ -32,6 +32,7 @@
   "description": "API wrapper for the Holodex API",
   "dependencies": {
     "dotenv": "^16.0.0",
+    "node-cache": "^5.1.2",
     "node-fetch": "^2.0.0"
   }
 }
