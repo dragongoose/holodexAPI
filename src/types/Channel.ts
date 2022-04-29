@@ -113,12 +113,16 @@ export class Channel {
    * ```
    */
   public get stats(): ChannelStats {
+    // Convert the raw data to a ChannelStats object
+    // and convert the string values to numbers
+
     const stats: ChannelStats = {
-      videoCount: this.#rawData.video_count,
-      viewCount: this.#rawData.view_count,
-      subscriberCount: this.#rawData.subscriber_count,
-      clipCount: this.#rawData.clip_count,
+      videoCount: Number(this.#rawData.video_count),
+      viewCount: Number(this.#rawData.view_count),
+      subscriberCount: Number(this.#rawData.subscriber_count),
+      clipCount: Number(this.#rawData.clip_count),
     };
+
     return stats;
   }
 
