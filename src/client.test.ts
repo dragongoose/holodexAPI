@@ -1,5 +1,6 @@
 import {holodex} from './client';
 import 'dotenv/config';
+import {VideoIncludes} from './types';
 
 if (!process.env.HOLODEX_API_KEY) {
   throw Error('Please set HOLODEX_API_KEY in your .env file');
@@ -86,16 +87,15 @@ test('make sure getVideo recommendation have a title', async () => {
   expect(recommendation.duration).toBeDefined();
   expect(recommendation.status).toBeDefined();
   expect(recommendation).toHaveProperty('liveTlCount');
-  expect(recommendation.channelId).toBeDefined();
 });
 
 test('make sure getVideos has videos', async () => {
   const videos = await client.getVideos({
-    include: {
-      mentions: true,
-    },
+    include: [VideoIncludes.Mentions, VideoIncludes.ChannelStats],
     limit: 50,
   });
+
+  console.log(videos[0].channel.stats);
 
   // Check all of the video's values
   expect(videos[0].id).toBeDefined();
@@ -107,6 +107,9 @@ test('make sure getVideos has videos', async () => {
   expect(videos[0].duration).toBeDefined();
   expect(videos[0].status).toBeDefined();
   expect(videos[0]).toHaveProperty('liveTlCount');
-  expect(videos[0].channelId).toBeDefined();
+  expect(videos[0].channel).toBeDefined();
+  expect(videos[0].channel.stats).toBeDefined();
+  expect(videos[0].channel.stats.videoCount).toBeGreaterThan(0);
   expect(videos.length).toBeGreaterThan(0);
+  //expect(videos.mentions).toBeGreaterThan(0);
 });
