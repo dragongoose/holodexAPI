@@ -3,7 +3,7 @@ import {ChannelType} from '../parts';
 /**
  * A class that represents a shorter channel
  */
-export interface ChannelMin {
+export interface RawChannelMin {
   /**
    * The id of the channel
    */
