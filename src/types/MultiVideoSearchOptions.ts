@@ -13,8 +13,12 @@ export interface MultiVideoSearchOptions {
 
   /**
    * Extra info to include
+   * @see VideoIncludes
+   * @default []
+   * @example
+   * [VideoIncludes.Status, VideoIncludes.Mentions]
    */
-  include?: VideoStatus[];
+  include?: VideoIncludes[];
 
   /**
    * Filter by language of the video
