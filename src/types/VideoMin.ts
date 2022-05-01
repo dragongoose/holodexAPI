@@ -1,5 +1,6 @@
+import {ChannelMin} from './ChannelMin';
 import {VideoStatus, VideoType} from './parts';
-import {ChannelMin, RawVideoMin} from './raw';
+import {RawVideoMin} from './raw';
 
 export class VideoMin {
   #rawData: RawVideoMin;
@@ -127,6 +128,6 @@ export class VideoMin {
    * @see {ChannelMin}
    */
   public get channel(): ChannelMin {
-    return this.#rawData.channel;
+    return new ChannelMin(this.#rawData.channel);
   }
 }
