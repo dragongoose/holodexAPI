@@ -1,5 +1,5 @@
 import {VideoStatus, VideoType} from './parts';
-import {ChannelMin} from './raw';
+import {RawChannelMin} from './raw';
 import {RawVideo} from './raw';
 import {Mention} from './Mention';
 import {Clip, Comment, VideoMin} from './';
@@ -256,7 +256,7 @@ export class Video {
     return vidRecomendations;
   }
 
-  public get channel(): ChannelMin {
+  public get channel(): RawChannelMin {
     return this.#rawData.channel;
   }
 }
