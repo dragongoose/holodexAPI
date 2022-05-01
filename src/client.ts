@@ -181,7 +181,7 @@ export class holodex {
     // to work properly
     // Getting the keys of the inclide object, the seperating it by a comma
     // so the API will accept it
-    optionsToJson.include = Object.keys(optionsToJson.include).join(',');
+    optionsToJson.include = optionsToJson.include.join(',');
 
     //! Honestly, I'm not sure if this soution will work,
     //! I'm going to try it and see if it works later
