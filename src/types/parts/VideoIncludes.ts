@@ -1,11 +1,11 @@
-export interface VideoIncludes {
-  clips?: boolean;
-  refers?: boolean;
-  sources?: boolean;
-  simulcasts?: boolean;
-  mentions?: boolean;
-  description?: boolean;
-  live_info?: boolean;
-  channel_stats?: boolean;
-  songs?: boolean;
+export enum VideoIncludes {
+  Clips = 'clips',
+  Refers = 'refers',
+  Sources = 'sources',
+  Simulcasts = 'simulcasts',
+  Mentions = 'mentions',
+  descriptions = 'description',
+  LiveInfo = 'live_info',
+  ChannelStats = 'channel_stats',
+  Songs = 'songs',
 }
