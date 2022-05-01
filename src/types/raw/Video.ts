@@ -316,7 +316,7 @@ EXAMPLE RESPONSE
 */
 
 import {VideoType, VideoStatus} from '../parts';
-import {ChannelMin, RawComment, RawClip} from './';
+import {RawChannelMin, RawComment, RawClip} from './';
 import {RawVideoMin} from './VideoMin';
 
 export interface RawVideo {
@@ -336,8 +336,8 @@ export interface RawVideo {
   songcount: number;
   channel_id: string;
   clips: RawClip[];
-  mentions: ChannelMin[];
+  mentions: RawChannelMin[];
   comments?: RawComment[];
   recommendations: RawVideoMin[];
-  channel: ChannelMin;
+  channel: RawChannelMin;
 }
