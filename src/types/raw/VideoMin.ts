@@ -147,7 +147,7 @@
         */
 
 import {VideoStatus, VideoType} from '../parts';
-import {ChannelMin} from '.';
+import {RawChannelMin} from '.';
 
 export interface RawVideoMin {
   id: string;
@@ -161,5 +161,5 @@ export interface RawVideoMin {
   live_tl_count?: {
     [lang: string]: number;
   };
-  channel: ChannelMin;
+  channel: RawChannelMin;
 }
