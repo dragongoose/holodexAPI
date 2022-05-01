@@ -126,7 +126,7 @@ export class VideoMin {
    * @type {ChannelMin}
    * @see {ChannelMin}
    */
-  public get channelId(): ChannelMin {
+  public get channel(): ChannelMin {
     return this.#rawData.channel;
   }
 }
