@@ -14,7 +14,7 @@ export interface MultiVideoSearchOptions {
   /**
    * Extra info to include
    */
-  include?: VideoIncludes;
+  include?: VideoStatus[];
 
   /**
    * Filter by language of the video
