@@ -91,11 +91,14 @@ test('make sure getVideo recommendation have a title', async () => {
 
 test('make sure getVideos has videos', async () => {
   const videos = await client.getVideos({
-    include: [VideoIncludes.Mentions, VideoIncludes.ChannelStats],
+    include: [
+      VideoIncludes.Mentions,
+      VideoIncludes.ChannelStats,
+      VideoIncludes.Refers,
+      VideoIncludes.descriptions,
+    ],
     limit: 50,
   });
-
-  console.log(videos[0].channel.stats);
 
   // Check all of the video's values
   expect(videos[0].id).toBeDefined();
@@ -111,5 +114,8 @@ test('make sure getVideos has videos', async () => {
   expect(videos[0].channel.stats).toBeDefined();
   expect(videos[0].channel.stats.videoCount).toBeGreaterThan(0);
   expect(videos.length).toBeGreaterThan(0);
-  //expect(videos.mentions).toBeGreaterThan(0);
+  expect(videos[0].refers.length).toBeGreaterThanOrEqual(0);
+  expect(videos[0].mentions.length).toBeGreaterThanOrEqual(0);
+  expect(videos[0]).toHaveProperty('description');
+  expect(videos[0].simulcasts).toBeDefined();
 });
