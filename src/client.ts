@@ -219,7 +219,9 @@ export class holodex {
       });
     }
 
-    const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
+    const mappedData = data.map(
+      (video: RawVideoMin) => new VideoMin(video, options.include)
+    );
     return mappedData;
   }
 }
