@@ -96,9 +96,14 @@ test('make sure getVideos has videos', async () => {
       VideoIncludes.ChannelStats,
       VideoIncludes.Refers,
       VideoIncludes.descriptions,
+      VideoIncludes.Simulcasts,
+      VideoIncludes.Clips,
     ],
     limit: 50,
+    id: 'J-2uaAyChew',
   });
+
+  console.log(videos[0].mentions);
 
   // Check all of the video's values
   expect(videos[0].id).toBeDefined();
@@ -114,8 +119,9 @@ test('make sure getVideos has videos', async () => {
   expect(videos[0].channel.stats).toBeDefined();
   expect(videos[0].channel.stats.videoCount).toBeGreaterThan(0);
   expect(videos.length).toBeGreaterThan(0);
-  expect(videos[0].refers.length).toBeGreaterThanOrEqual(0);
-  expect(videos[0].mentions.length).toBeGreaterThanOrEqual(0);
+  expect(videos[0].refers!.length).toBeGreaterThanOrEqual(0);
+  expect(videos[0].mentions!.length).toBeGreaterThanOrEqual(0);
   expect(videos[0]).toHaveProperty('description');
-  expect(videos[0].simulcasts).toBeDefined();
+  expect(videos[0].simulcasts!.length).toBeGreaterThanOrEqual(0);
+  expect(videos[0].clips!.length).toBeGreaterThanOrEqual(0);
 });
