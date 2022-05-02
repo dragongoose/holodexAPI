@@ -167,4 +167,5 @@ export interface RawVideoMin {
   mentions?: RawChannelMin[];
   description?: string;
   simulcasts?: RawVideo[];
+  clips?: RawVideoMin[];
 }
