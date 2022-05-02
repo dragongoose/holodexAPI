@@ -1,6 +1,7 @@
 import {ChannelMin} from './ChannelMin';
 import {VideoStatus, VideoType} from './parts';
 import {RawVideoMin} from './raw';
+import {Video} from '.';
 
 export class VideoMin {
   #rawData: RawVideoMin;
@@ -129,5 +130,53 @@ export class VideoMin {
    */
   public get channel(): ChannelMin {
     return new ChannelMin(this.#rawData.channel);
+  }
+
+  /**
+   * Other videos this video is refering
+   * @readonly
+   * @type {VideoMin[]}
+   */
+  public get refers(): VideoMin[] {
+    const refersArr = this.#rawData?.refers?.map(
+      refVideo => new VideoMin(refVideo)
+    );
+
+    return refersArr || [];
+  }
+
+  /**
+   * Other channels that the video includes, or is mentioning.
+   * @readonly
+   * @type {ChannelMin[]}
+   * @see {ChannelMin}
+   */
+  public get mentions(): ChannelMin[] {
+    const mentionsArr = this.#rawData?.mentions?.map(
+      mention => new ChannelMin(mention)
+    );
+
+    return mentionsArr || [];
+  }
+
+  /**
+   * The description of the video
+   * @readonly
+   * @type {string}
+   */
+  public get description() {
+    return this.#rawData.description;
+  }
+
+  /** The video's simulcasts
+   * @readonly
+   * @type {Video[]}
+   */
+  public get simulcasts(): Video[] {
+    const simulcastsArr = this.#rawData?.simulcasts?.map(
+      simulcast => new Video(simulcast)
+    );
+
+    return simulcastsArr || [];
   }
 }

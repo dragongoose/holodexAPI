@@ -148,6 +148,7 @@
 
 import {VideoStatus, VideoType} from '../parts';
 import {RawChannelMin} from '.';
+import {RawVideo} from './Video';
 
 export interface RawVideoMin {
   id: string;
@@ -162,4 +163,8 @@ export interface RawVideoMin {
     [lang: string]: number;
   };
   channel: RawChannelMin;
+  refers?: RawVideoMin[];
+  mentions?: RawChannelMin[];
+  description?: string;
+  simulcasts?: RawVideo[];
 }
