@@ -2,6 +2,11 @@
 
 holodexAPI is a wrapper for the [holodex](https://holodex.net/) API, written in TypeScript.
 
+[![GitHub issues](https://img.shields.io/github/issues/dragongoose/holodexAPI?style=for-the-badge)](https://github.com/dragongoose/holodexAPI/issues)
+[![GitHub forks](https://img.shields.io/github/forks/dragongoose/holodexAPI?style=for-the-badge)](https://github.com/dragongoose/holodexAPI/network)
+[![GitHub stars](https://img.shields.io/github/stars/dragongoose/holodexAPI?style=for-the-badge)](https://github.com/dragongoose/holodexAPI/stargazers)
+[![GitHub license](https://img.shields.io/github/license/dragongoose/holodexAPI?style=for-the-badge)](https://github.com/dragongoose/holodexAPI/blob/master/LICENSE)
+
 ## Documentation
 
 You can view the docs [here](https://dragongoose.github.io/holodexAPI/index.html)
