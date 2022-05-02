@@ -1,13 +1,21 @@
 import {ChannelMin} from './ChannelMin';
-import {VideoStatus, VideoType} from './parts';
+import {VideoIncludes, VideoStatus, VideoType} from './parts';
 import {RawVideoMin} from './raw';
 import {Video} from '.';
 
+/**
+ * Class which represents a smaller video.
+ * @see {Video}
+ * @param {RawVideoMin} rawData The raw data of the video.
+ * @param {VideoIncludes} includes - The includes to include in the response
+ */
 export class VideoMin {
   #rawData: RawVideoMin;
+  #includes;
 
-  constructor(rawData: RawVideoMin) {
+  constructor(rawData: RawVideoMin, includes?: VideoIncludes[]) {
     this.#rawData = rawData;
+    this.#includes = includes;
   }
 
   /**
@@ -137,7 +145,12 @@ export class VideoMin {
    * @readonly
    * @type {VideoMin[]}
    */
-  public get refers(): VideoMin[] {
+  public get refers(): VideoMin[] | null {
+    // If includes is undefined, or includes is not in the refer list, return null
+    if (!this.#includes || !this.#includes.includes(VideoIncludes.Refers)) {
+      return null;
+    }
+
     const refersArr = this.#rawData?.refers?.map(
       refVideo => new VideoMin(refVideo)
     );
@@ -151,7 +164,11 @@ export class VideoMin {
    * @type {ChannelMin[]}
    * @see {ChannelMin}
    */
-  public get mentions(): ChannelMin[] {
+  public get mentions(): ChannelMin[] | null {
+    if (!this.#includes || !this.#includes.includes(VideoIncludes.Mentions)) {
+      return null;
+    }
+
     const mentionsArr = this.#rawData?.mentions?.map(
       mention => new ChannelMin(mention)
     );
@@ -165,18 +182,38 @@ export class VideoMin {
    * @type {string}
    */
   public get description() {
-    return this.#rawData.description;
+    return this.#rawData.description || null;
   }
 
   /** The video's simulcasts
    * @readonly
    * @type {Video[]}
    */
-  public get simulcasts(): Video[] {
+  public get simulcasts(): Video[] | null {
+    // Check if the simulcasts casts exist.
+    if (!this.#includes || !this.#includes.includes(VideoIncludes.Simulcasts)) {
+      return null;
+    }
+
     const simulcastsArr = this.#rawData?.simulcasts?.map(
       simulcast => new Video(simulcast)
     );
 
     return simulcastsArr || [];
+  }
+
+  /**
+   * Clips of the video
+   * @readonly
+   * @type {VideoMin[]}
+   */
+  public get clips(): VideoMin[] | null {
+    if (!this.#includes || !this.#includes.includes(VideoIncludes.Clips)) {
+      return null;
+    }
+
+    const clipsArr = this.#rawData?.clips?.map(clip => new VideoMin(clip));
+
+    return clipsArr || [];
   }
 }
