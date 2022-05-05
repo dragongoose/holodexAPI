@@ -8,10 +8,13 @@ import {
   RawVideoMin,
   RawChannel,
   RawVideo,
+  SearchVideoOptions,
+  PaginatedObject,
 } from './types';
 import {MultiVideoSearchOptions} from './types/MultiVideoSearchOptions';
 
 import NodeCache from 'node-cache';
+import {RawPaginatedObject} from './types/raw/RawPaginatedObject';
 const cache = new NodeCache({
   //2 minutes
   stdTTL: 120,
@@ -189,7 +192,7 @@ export class holodex {
     // eslint-disable-next-line node/no-unsupported-features/node-builtins
     const query = new URLSearchParams(optionsToJson).toString();
 
-    let data: RawVideoMin[];
+    let data;
 
     // Check if the channel is cached
     if (cache.has('videos_' + query)) {
@@ -219,9 +222,80 @@ export class holodex {
       });
     }
 
-    const mappedData = data.map(
-      (video: RawVideoMin) => new VideoMin(video, options.include)
-    );
+    // Check to see if the data is paginated,
+    // if it is, we need to use PaginatedObject
+    // type instead of RawVideoMin[]
+    if (options.paginated) {
+      const videos: VideoMin[] = data.items.map(
+        (video: RawVideoMin) => new VideoMin(video)
+      );
+
+      data.items = videos;
+
+      const newData: RawPaginatedObject = data;
+      const finalData = new PaginatedObject(newData);
+      return finalData;
+    }
+
+    const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
+    return mappedData;
+  }
+
+  /**
+   * A improved `/videos` endpoint
+   * @param options Options for the video
+   */
+  public async searchVideos(options: SearchVideoOptions) {
+    // for some reason, this endpoint uses a JSON body and a POST request
+    const body = JSON.stringify(options);
+
+    let data;
+
+    // Check if the channel is cached
+    if (cache.has('videos_' + body)) {
+      data = (await cache.get('videos_' + body)) as RawVideoMin[];
+    }
+
+    // If it's not cached, fetch it
+    else {
+      data = await this.fetch(`${this.baseUrl}/search/videoSearch`, {
+        method: 'POST',
+        headers: this.headers,
+        body,
+      }).then(data => {
+        if (data.status === 403) {
+          throw new Error('Invalid API key (Unauthorized)');
+        }
+
+        if (data.status !== 200) {
+          throw new Error(data.statusText);
+        }
+
+        const dataJson = data.json();
+
+        // Cache the data
+        cache.set('videos_' + body, dataJson);
+
+        return dataJson;
+      });
+    }
+
+    // Check to see if the data is paginated,
+    // if it is, we need to use PaginatedObject
+    // type instead of RawVideoMin[]
+    if (options.paginated) {
+      const videos: VideoMin[] = data.items.map(
+        (video: RawVideoMin) => new VideoMin(video)
+      );
+
+      data.items = videos;
+
+      const newData: RawPaginatedObject = data;
+      const finalData = new PaginatedObject(newData);
+      return finalData;
+    }
+
+    const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
     return mappedData;
   }
 }
