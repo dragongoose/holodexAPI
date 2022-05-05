@@ -92,4 +92,6 @@ export interface MultiVideoSearchOptions {
    * Set the maximum for how old a video could be
    */
   to?: Date;
+
+  paginated?: boolean;
 }
