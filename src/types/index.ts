@@ -9,3 +9,6 @@ export * from './Clip';
 export * from './Comment';
 export * from './VideoMin';
 export * from './MultiVideoSearchOptions';
+export * from './SearchVideosOptions';
+export * from './PaginatedObject';
+export * from './ChannelMin';
