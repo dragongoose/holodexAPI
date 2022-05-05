@@ -1,6 +1,6 @@
 import {holodex} from './client';
 import 'dotenv/config';
-import {VideoIncludes} from './types';
+import {PaginatedObject, VideoIncludes, VideoMin} from './types';
 
 if (!process.env.HOLODEX_API_KEY) {
   throw Error('Please set HOLODEX_API_KEY in your .env file');
@@ -101,6 +101,7 @@ test('make sure getVideos has videos', async () => {
     ],
     limit: 50,
     id: 'J-2uaAyChew',
+    paginated: false,
   });
 
   console.log(videos[0].mentions);
@@ -124,4 +125,23 @@ test('make sure getVideos has videos', async () => {
   expect(videos[0]).toHaveProperty('description');
   expect(videos[0].simulcasts!.length).toBeGreaterThanOrEqual(0);
   expect(videos[0].clips!.length).toBeGreaterThanOrEqual(0);
+});
+
+test('make sure searchVideos has videos', async () => {
+  const videos: PaginatedObject = await client.searchVideos({
+    limit: 20,
+    paginated: true,
+  });
+
+  expect(videos.items.length).toBeGreaterThan(0);
+  expect(videos.total).toBeGreaterThan(0);
+});
+
+test('make sure searchVideos has videos, unpaginated', async () => {
+  const videos: VideoMin[] = await client.searchVideos({
+    limit: 20,
+    paginated: false,
+  });
+
+  expect(videos.length).toBeGreaterThan(0);
 });
