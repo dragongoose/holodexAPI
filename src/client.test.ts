@@ -1,6 +1,6 @@
 import {holodex} from './client';
 import 'dotenv/config';
-import {PaginatedObject, VideoIncludes, VideoMin} from './types';
+import {PaginatedObject, Video, VideoIncludes, VideoMin} from './types';
 
 if (!process.env.HOLODEX_API_KEY) {
   throw Error('Please set HOLODEX_API_KEY in your .env file');
@@ -57,7 +57,7 @@ test('makes sure getVideo has channel', async () => {
     lang: 'EN',
   });
 
-  expect(video.channel.english_name).toBe('Gawr Gura');
+  expect(video.channel.englishName).toBe('Gawr Gura');
 });
 
 test('makes sure getVideo has recommendations', async () => {
@@ -90,7 +90,7 @@ test('make sure getVideo recommendation have a title', async () => {
 });
 
 test('make sure getVideos has videos', async () => {
-  const videos = await client.getVideos({
+  const videos: VideoMin[] = await client.getVideos({
     include: [
       VideoIncludes.Mentions,
       VideoIncludes.ChannelStats,
@@ -103,8 +103,6 @@ test('make sure getVideos has videos', async () => {
     id: 'J-2uaAyChew',
     paginated: false,
   });
-
-  console.log(videos[0].mentions);
 
   // Check all of the video's values
   expect(videos[0].id).toBeDefined();
@@ -123,7 +121,6 @@ test('make sure getVideos has videos', async () => {
   expect(videos[0].refers!.length).toBeGreaterThanOrEqual(0);
   expect(videos[0].mentions!.length).toBeGreaterThanOrEqual(0);
   expect(videos[0]).toHaveProperty('description');
-  expect(videos[0].simulcasts!.length).toBeGreaterThanOrEqual(0);
   expect(videos[0].clips!.length).toBeGreaterThanOrEqual(0);
 });
 
