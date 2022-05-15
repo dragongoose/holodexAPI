@@ -1,5 +1,7 @@
 # holodexAPI - development
 
+**Development Branch**
+
 holodexAPI is a wrapper for the [holodex](https://holodex.net/) API, written in TypeScript.
 
 [![GitHub issues](https://img.shields.io/github/issues/dragongoose/holodexAPI?style=for-the-badge)](https://github.com/dragongoose/holodexAPI/issues)
