@@ -21,8 +21,6 @@
     "test": "jest",
     "compile": "tsc",
     "fix": "gts fix",
-    "pretest": "npm run compile",
-    "posttest": "npm run lint",
     "doc": "npx typedoc"
   },
   "keywords": [],
