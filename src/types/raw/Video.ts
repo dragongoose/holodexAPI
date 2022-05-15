@@ -340,4 +340,5 @@ export interface RawVideo {
   comments?: RawComment[];
   recommendations: RawVideoMin[];
   channel: RawChannelMin;
+  refers: RawChannelMin[];
 }
