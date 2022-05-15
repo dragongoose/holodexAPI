@@ -177,7 +177,6 @@ export class holodex {
     if (!options) {
       throw new Error('options is required');
     }
-
     const optionsToJson = JSON.parse(JSON.stringify(options));
 
     // It gets a bit weird here, but we need to do this to get the query string
@@ -185,6 +184,10 @@ export class holodex {
     // Getting the keys of the inclide object, the seperating it by a comma
     // so the API will accept it
     optionsToJson.include = optionsToJson.include.join(',');
+
+    // Delete the paginated option if it's false,
+    // Because the API thinks it's true
+    if (optionsToJson.paginated === false) delete optionsToJson.paginated;
 
     //! Honestly, I'm not sure if this soution will work,
     //! I'm going to try it and see if it works later
@@ -227,7 +230,7 @@ export class holodex {
     // type instead of RawVideoMin[]
     if (options.paginated) {
       const videos: VideoMin[] = data.items.map(
-        (video: RawVideoMin) => new VideoMin(video)
+        (video: RawVideoMin) => new VideoMin(video, options.include)
       );
 
       data.items = videos;
@@ -237,7 +240,9 @@ export class holodex {
       return finalData;
     }
 
-    const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
+    const mappedData = data.map(
+      (video: RawVideoMin) => new VideoMin(video, options.include)
+    );
     return mappedData;
   }
 
@@ -246,6 +251,10 @@ export class holodex {
    * @param options Options for the video
    */
   public async searchVideos(options: SearchVideoOptions) {
+    // Delete the paginated option if it's false,
+    // Because the API thinks it's true
+    if (options.paginated === false) delete options.paginated;
+
     // for some reason, this endpoint uses a JSON body and a POST request
     const body = JSON.stringify(options);
 
