@@ -19,7 +19,6 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "gts lint",
     "compile": "tsc",
     "fix": "gts fix",
     "pretest": "npm run compile",
