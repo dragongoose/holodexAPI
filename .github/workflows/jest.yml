@@ -1,5 +1,9 @@
 name: jest
 on: push
+
+env: # Or as an environment variable
+  HOLODEX_API_KEY: ${{ secrets.HOLODEX_API_KEY }}
+  
 jobs:
   build:
     runs-on: ubuntu-latest
