@@ -1,5 +1,7 @@
 name: jest
-on: push
+on: 
+  push:
+    branches: [master, development]
 
 env: # Or as an environment variable
   HOLODEX_API_KEY: ${{ secrets.HOLODEX_API_KEY }}
