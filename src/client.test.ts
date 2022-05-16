@@ -1,6 +1,6 @@
 import {holodex} from './client';
 import 'dotenv/config';
-import {PaginatedObject, Video, VideoIncludes, VideoMin} from './types';
+import {PaginatedObject, VideoIncludes, VideoMin} from './types';
 
 if (!process.env.HOLODEX_API_KEY) {
   throw Error('Please set HOLODEX_API_KEY in your .env file');
@@ -142,3 +142,19 @@ test('make sure searchVideos has videos, unpaginated', async () => {
 
   expect(videos.length).toBeGreaterThan(0);
 });
+
+test('make sure searchComments() has comments', async () => {
+  const comments: PaginatedObject = await client.searchComments({
+    limit: 20,
+    paginated: true,
+  });
+
+  expect(comments.items.length).toBeGreaterThan(0);
+  expect(comments.total).toBeGreaterThan(0);
+
+  const coms = comments.items[0].comments;
+  expect(coms.length).toBeGreaterThan(0);
+  expect(coms[0].message).toBeDefined();
+});
+
+test('make sure searchComments() has comments, unpaginated', async () => {});
