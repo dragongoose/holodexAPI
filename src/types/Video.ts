@@ -1,8 +1,8 @@
 import {VideoStatus, VideoType} from './parts';
-import {RawChannelMin} from './raw';
 import {RawVideo} from './raw';
 import {Mention} from './Mention';
 import {Clip, Comment, VideoMin} from './';
+import {ChannelMin} from './ChannelMin';
 
 export class Video {
   #rawData: RawVideo;
@@ -220,6 +220,10 @@ export class Video {
       memory => new Mention(memory)
     );
 
+    if (!vidMentions) {
+      return [];
+    }
+
     return vidMentions;
   }
 
@@ -256,7 +260,15 @@ export class Video {
     return vidRecomendations;
   }
 
-  public get channel(): RawChannelMin {
-    return this.#rawData.channel;
+  public get channel(): ChannelMin {
+    return new ChannelMin(this.#rawData.channel);
+  }
+
+  public refers(): ChannelMin[] {
+    const vidRefers = this.#rawData.refers.map(
+      memory => new ChannelMin(memory)
+    );
+
+    return vidRefers;
   }
 }

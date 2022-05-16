@@ -11,7 +11,7 @@ client
   })
   .then(video => {
     console.log(video.title);
-    console.log(video.channel.english_name);
+    console.log(video.channel.englishName);
     console.log(video.mentions.length);
     console.log(video.clips.length);
     console.log(video.comments.length);
