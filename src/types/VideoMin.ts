@@ -2,6 +2,7 @@ import {ChannelMin} from './ChannelMin';
 import {VideoIncludes, VideoStatus, VideoType} from './parts';
 import {RawVideoMin} from './raw';
 import {Video} from '.';
+import {Comment} from './Comment';
 
 /**
  * Class which represents a smaller video.
@@ -215,5 +216,18 @@ export class VideoMin {
     const clipsArr = this.#rawData?.clips?.map(clip => new VideoMin(clip));
 
     return clipsArr || [];
+  }
+
+  /**
+   * Comments of the video
+   * @readonly
+   * @type {Comment[]}
+   */
+  public get comments(): Comment[] {
+    const commentsArr = this.#rawData?.comments?.map(
+      comment => new Comment(comment)
+    );
+
+    return commentsArr || [];
   }
 }
