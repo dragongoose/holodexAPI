@@ -1,0 +1,8 @@
+docs
+.github
+jest.config.js
+.eslintrc.js
+.gitignore
+typedoc.json
+tsconfig.json
+.env
