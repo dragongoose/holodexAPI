@@ -1,5 +1,10 @@
 name: Build and Deploy Docs
-on: [push]
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
@@ -12,9 +17,12 @@ jobs:
         run: |
           npm ci
           npm run doc
-
+          
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: docs # The branch the action should deploy to.
           folder: docs # The folder the action should deploy.
+
+
+
