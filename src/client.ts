@@ -10,6 +10,7 @@ import {
   RawVideo,
   SearchVideoOptions,
   PaginatedObject,
+  SearchCommentOptions,
 } from './types';
 import {MultiVideoSearchOptions} from './types/MultiVideoSearchOptions';
 import NodeCache from 'node-cache';
@@ -43,7 +44,7 @@ export class holodex {
   /**
    * Get a channel by id
    * @param id The id of the channel
-   * @returns {Promise<Channel>}
+   * @returns Promise<Channel>
    * @example
    * ```javascript
    * holodex.getChannel('UCoSrY_IQQVpmIRZ9Xf-y93g').then(channel => {
@@ -92,8 +93,8 @@ export class holodex {
    * Get a video by id
    * @param id The id of the video
    * @param options Options for the video
-   * @see {VideoSearchOptions}
-   * @returns {Promise<Video>}
+   * @see VideoSearchOptions
+   * @returns Promise<Video>
    * @example
    * ```javascript
    * holodex.getVideo('5d7f8b8c-b9b1-4b5b-b8e2-f8f8b8b8b8b8', {
@@ -158,8 +159,8 @@ export class holodex {
   /**
    * Get multiple video from filters
    * @param options Options for the video
-   * @see {MultiVideoSearchOptions}
-   * @returns {Promise<VideoMin[]>}
+   * @see MultiVideoSearchOptions
+   * @returns Promise<VideoMin[]>
    * @example
    * ```javascript
    * holodex.getVideos({
@@ -248,6 +249,16 @@ export class holodex {
   /**
    * A improved `/videos` endpoint
    * @param options Options for the video
+   * @see SearchVideoOptions
+   * @returns Promise<VideoMin[]>
+   * @example
+   * ```javascript
+   * holodex.searchVideos({
+   *  query: 'minecraft',
+   *  limit: 10,
+   * }).then(videos => {
+   *  console.log(videos[0].title);
+   * });
    */
   public async searchVideos(options: SearchVideoOptions) {
     // Delete the paginated option if it's false,
@@ -304,6 +315,82 @@ export class holodex {
     }
 
     const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
+    return mappedData;
+  }
+
+  /**
+   * Gets videos with comments
+   * @param options Options for the video
+   * @see SearchCommentOptions
+   * @returns Promise<VideoMin[]>
+   * @example
+   * ```javascript
+   * holodex.searchComments({
+   *  type: 'clip',
+   * topicId: 'minecraft',
+   * limit: 10,
+   * }).then(videos => {
+   * console.log(videos[0].comments);
+   * });
+   * ```
+   */
+  public async searchComments(options: SearchCommentOptions) {
+    // Delete the paginated option if it's false,
+    // Because the API thinks it's true
+    if (options.paginated === false) delete options.paginated;
+
+    // for some reason, this endpoint uses a JSON body and a POST request
+    const body = JSON.stringify(options);
+
+    let data;
+
+    // Check if the channel is cached
+    if (cache.has('comments_' + body)) {
+      data = (await cache.get('comments_' + body)) as VideoMin[];
+    }
+
+    // If it's not cached, fetch it
+    else {
+      data = await this.fetch(`${this.baseUrl}/search/commentSearch`, {
+        method: 'POST',
+        headers: this.headers,
+        body,
+      }).then(data => {
+        if (data.status === 403) {
+          throw new Error('Invalid API key (Unauthorized)');
+        }
+
+        if (data.status !== 200) {
+          throw new Error(data.statusText);
+        }
+
+        const dataJson = data.json();
+
+        // Cache the data
+        cache.set('comments_' + body, dataJson);
+
+        return dataJson;
+      });
+    }
+
+    // Check to see if the data is paginated,
+    // if it is, we need to use PaginatedObject
+    // type instead of RawVideoMin[]
+    if (options.paginated) {
+      const comments: RawVideoMin[] = data.items.map(
+        (comment: RawVideoMin) => new VideoMin(comment)
+      );
+
+      data.items = comments;
+
+      const newData: RawPaginatedObject = data;
+      const finalData = new PaginatedObject(newData);
+      return finalData;
+    }
+
+    const mappedData = data.map(
+      (comment: RawVideoMin) => new VideoMin(comment)
+    );
     return mappedData;
   }
 }
