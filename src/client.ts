@@ -12,7 +12,6 @@ import {
   PaginatedObject,
 } from './types';
 import {MultiVideoSearchOptions} from './types/MultiVideoSearchOptions';
-
 import NodeCache from 'node-cache';
 import {RawPaginatedObject} from './types/raw/RawPaginatedObject';
 const cache = new NodeCache({
