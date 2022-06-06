@@ -9,6 +9,7 @@ export class Video {
 
   constructor(rawData: RawVideo) {
     this.#rawData = rawData;
+    console.log(this.#rawData);
   }
 
   /**
@@ -192,6 +193,10 @@ export class Video {
    * @see Clip
    */
   public get clips() {
+    // check if clips are available, if not return empty array
+    if (!this.#rawData.clips) {
+      return [];
+    }
     const vidClips = this.#rawData.clips.map(memory => new Clip(memory));
 
     return vidClips;
@@ -216,13 +221,13 @@ export class Video {
    * @see {Mention}
    */
   public get mentions() {
+    // check if mentions are available, if not return empty array
+    if (!this.#rawData.mentions) {
+      return [];
+    }
     const vidMentions = this.#rawData.mentions.map(
       memory => new Mention(memory)
     );
-
-    if (!vidMentions) {
-      return [];
-    }
 
     return vidMentions;
   }
@@ -241,7 +246,8 @@ export class Video {
    * @see {Comment}
    */
   public get comments() {
-    if (!this.#rawData.comments || this.#rawData.comments.length === 0) {
+    // check if comments are available, if not return empty array
+    if (!this.#rawData.comments) {
       return [];
     }
 
@@ -253,6 +259,11 @@ export class Video {
   }
 
   public get recommendations(): VideoMin[] {
+    // check if recommendations are available, if not return empty array
+    if (!this.#rawData.recommendations) {
+      return [];
+    }
+
     const vidRecomendations = this.#rawData.recommendations.map(memory => {
       return new VideoMin(memory);
     });
@@ -265,6 +276,11 @@ export class Video {
   }
 
   public refers(): ChannelMin[] {
+    // check if refers are available, if not return empty array
+    if (!this.#rawData.refers) {
+      return [];
+    }
+
     const vidRefers = this.#rawData.refers.map(
       memory => new ChannelMin(memory)
     );
