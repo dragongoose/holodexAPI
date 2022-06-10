@@ -6,6 +6,8 @@ if (!process.env.HOLODEX_API_KEY) {
   throw Error('Please set HOLODEX_API_KEY in your .env file');
 }
 
+jest.setTimeout(30000);
+
 const apiKey = process.env.HOLODEX_API_KEY;
 
 const client = new holodex({
