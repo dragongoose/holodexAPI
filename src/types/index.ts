@@ -13,3 +13,4 @@ export * from './SearchVideosOptions';
 export * from './PaginatedObject';
 export * from './ChannelMin';
 export * from './SearchCommentOptions';
+export * from './PaginatedObject';

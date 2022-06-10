@@ -14,7 +14,6 @@ import {
 } from './types';
 import {MultiVideoSearchOptions} from './types/MultiVideoSearchOptions';
 import NodeCache from 'node-cache';
-import {RawPaginatedObject} from './types/raw/RawPaginatedObject';
 const cache = new NodeCache({
   //2 minutes
   stdTTL: 120,
@@ -235,9 +234,8 @@ export class holodex {
 
       data.items = videos;
 
-      const newData: RawPaginatedObject = data;
-      const finalData = new PaginatedObject(newData);
-      return finalData;
+      const newData: PaginatedObject = data;
+      return newData;
     }
 
     const mappedData = data.map(
@@ -309,9 +307,8 @@ export class holodex {
 
       data.items = videos;
 
-      const newData: RawPaginatedObject = data;
-      const finalData = new PaginatedObject(newData);
-      return finalData;
+      const newData: PaginatedObject = data;
+      return newData;
     }
 
     const mappedData = data.map((video: RawVideoMin) => new VideoMin(video));
@@ -383,9 +380,8 @@ export class holodex {
 
       data.items = comments;
 
-      const newData: RawPaginatedObject = data;
-      const finalData = new PaginatedObject(newData);
-      return finalData;
+      const newData: PaginatedObject = data;
+      return newData;
     }
 
     const mappedData = data.map(
