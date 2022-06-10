@@ -9,7 +9,6 @@ export class Video {
 
   constructor(rawData: RawVideo) {
     this.#rawData = rawData;
-    console.log(this.#rawData);
   }
 
   /**
