@@ -1,5 +1,5 @@
 
-name: jest
+name: Testing with jest
 on: 
   push:
   pull_request:
@@ -9,7 +9,7 @@ env: # Or as an environment variable
   HOLODEX_API_KEY: ${{ secrets.HOLODEX_API_KEY }}
 
 jobs:
-  build:
+  test-the-code:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
