@@ -1,6 +1,10 @@
 
 name: jest
-on: push
+on: 
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
 env: # Or as an environment variable
   HOLODEX_API_KEY: ${{ secrets.HOLODEX_API_KEY }}
 
