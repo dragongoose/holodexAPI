@@ -8,6 +8,15 @@ on:
     types: [opened, reopened]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: npm i
+    - name: Run tests
+      run: npx jest
+    
   build-and-deploy:
     concurrency: ci-master # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
