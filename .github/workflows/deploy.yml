@@ -11,7 +11,7 @@ env: # Or as an environment variable
   HOLODEX_API_KEY: ${{ secrets.HOLODEX_API_KEY }}
 
 jobs:
-  test:
+  Run-tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -21,6 +21,7 @@ jobs:
       run: npx jest
     
   build-and-deploy:
+    needs: Run-tests
     concurrency: ci-master # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
