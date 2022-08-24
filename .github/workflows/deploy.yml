@@ -6,6 +6,9 @@ on:
       - master
   pull_request:
     types: [opened, reopened]
+    
+env: # Or as an environment variable
+  HOLODEX_API_KEY: ${{ secrets.HOLODEX_API_KEY }}
 
 jobs:
   test:
